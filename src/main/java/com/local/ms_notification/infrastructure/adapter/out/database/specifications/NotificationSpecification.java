@@ -11,6 +11,10 @@ import java.util.List;
 
 public class NotificationSpecification {
 
+    private NotificationSpecification() {
+
+    }
+
     public static Specification<NotificationEntity> filterByEntity(Notification filter) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

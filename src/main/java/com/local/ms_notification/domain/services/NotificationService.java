@@ -5,11 +5,13 @@ import com.local.ms_notification.application.port.in.SaveNotificationUseCase;
 import com.local.ms_notification.application.port.out.NotificationOutputPort;
 import com.local.ms_notification.domain.model.Notification;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -39,7 +41,7 @@ public class NotificationService implements FindNotificationUseCase, SaveNotific
     @Override
     public Notification update(Notification notification) {
         Notification old = notificationOutputPort.getNotificationById(notification.getId());
-
+        log.info("objeto a actualizar {}",old.toString());
         return notificationOutputPort.save(notification);
     }
 }
