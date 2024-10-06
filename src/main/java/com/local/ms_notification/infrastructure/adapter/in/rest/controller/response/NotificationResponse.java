@@ -1,7 +1,6 @@
-package com.local.ms_notification.domain.model;
+package com.local.ms_notification.infrastructure.adapter.in.rest.controller.response;
 
 import com.local.ms_notification.domain.enums.NotificationStatusEnum;
-import com.local.ms_notification.domain.enums.NotificationTypeEnum;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,11 +11,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class Notification {
+public class NotificationResponse {
     private Long id;
     private String recipient;
     private String message;
-    private NotificationTypeEnum type;
+    private String NotificationTypeEnum;
     private LocalDateTime sentAt;
     private NotificationStatusEnum status;
 }

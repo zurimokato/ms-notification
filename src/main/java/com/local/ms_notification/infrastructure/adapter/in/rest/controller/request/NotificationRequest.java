@@ -1,22 +1,25 @@
-package com.local.ms_notification.domain.model;
+package com.local.ms_notification.infrastructure.adapter.in.rest.controller.request;
 
 import com.local.ms_notification.domain.enums.NotificationStatusEnum;
-import com.local.ms_notification.domain.enums.NotificationTypeEnum;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
 @Getter
 @Setter
 @Builder
-public class Notification {
+public class NotificationRequest {
+
     private Long id;
+    @NotNull
     private String recipient;
+    @NotNull
     private String message;
-    private NotificationTypeEnum type;
+    @NotNull
+    private String NotificationTypeEnum;
     private LocalDateTime sentAt;
     private NotificationStatusEnum status;
 }
