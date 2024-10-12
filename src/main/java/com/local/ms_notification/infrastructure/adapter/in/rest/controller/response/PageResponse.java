@@ -1,13 +1,13 @@
 package com.local.ms_notification.infrastructure.adapter.in.rest.controller.response;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PageResponse {
     private int size;
     private int totalPages;

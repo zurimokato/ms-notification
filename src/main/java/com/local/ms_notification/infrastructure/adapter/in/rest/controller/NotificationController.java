@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,55 +27,53 @@ public class NotificationController implements NotificationAPIPort {
 
 
     @Override
-    public ResponseEntity<GenericResponse> getNotifications(Pageable pageable) {
+    public GenericResponse getNotifications(Pageable pageable) {
         Page<NotificationResponse> page = findNotificationUseCase.findNotifications(pageable)
                 .map(notificationRestMapper::toResponse);
         GenericResponse genericResponse = GenericResponse.success();
         genericResponse.setData(page.getContent());
         genericResponse.setPageResponse(notificationRestMapper.toPageResponse(page));
-        return ResponseEntity.ok(genericResponse);
+        return genericResponse;
     }
 
     @Override
-    public ResponseEntity<GenericResponse> queryNotifications(NotificationRequest notificationRequest, Pageable pageable) {
+    public GenericResponse queryNotifications(NotificationRequest notificationRequest, Pageable pageable) {
         Page<NotificationResponse> page = findNotificationUseCase.findNotifications(pageable, notificationRestMapper.toModel(notificationRequest))
                 .map(notificationRestMapper::toResponse);
         GenericResponse genericResponse = GenericResponse.success();
         genericResponse.setData(page.getContent());
         genericResponse.setPageResponse(notificationRestMapper.toPageResponse(page));
-        return ResponseEntity.ok(genericResponse);
+        return genericResponse;
     }
 
     @Override
-    public ResponseEntity<GenericResponse> queryNotifications(Long id) {
+    public GenericResponse queryNotifications(Long id) {
         NotificationResponse notificationResponse =
                 notificationRestMapper.toResponse(findNotificationUseCase.findNotificationById(id));
 
         GenericResponse genericResponse = GenericResponse.success();
         genericResponse.setData(notificationResponse);
 
-        return ResponseEntity.ok(genericResponse);
+        return genericResponse;
     }
 
     @Override
-    public ResponseEntity<GenericResponse> createNotification(NotificationRequest notification) {
+    public GenericResponse createNotification(NotificationRequest notification) {
 
         NotificationResponse notificationResponse = notificationRestMapper.toResponse(
                 saveNotificationUseCase.save(notificationRestMapper.toModel(notification))
         );
         log.info("notification created {}", notificationResponse.toString());
-        GenericResponse genericResponse = GenericResponse.success();
-        return ResponseEntity.ok(genericResponse);
+        return GenericResponse.success();
     }
 
     @Override
-    public ResponseEntity<GenericResponse> updateNotification(NotificationRequest notification) {
+    public GenericResponse updateNotification(NotificationRequest notification) {
         NotificationResponse notificationResponse = notificationRestMapper.toResponse(
                 saveNotificationUseCase.update(notificationRestMapper.toModel(notification))
         );
         log.info("notification updated {}", notificationResponse.toString());
-        GenericResponse genericResponse = GenericResponse.success();
-        return ResponseEntity.ok(genericResponse);
+        return GenericResponse.success();
     }
 
 }
