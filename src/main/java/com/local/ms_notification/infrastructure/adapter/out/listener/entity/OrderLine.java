@@ -10,6 +10,7 @@ import lombok.Setter;
 public class OrderLine {
     private String orderId;
     private String productId;
+    private String name;
     private int quantity;
     private double price;
     private double subtotal;

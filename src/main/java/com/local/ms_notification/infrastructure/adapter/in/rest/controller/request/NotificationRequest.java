@@ -1,6 +1,7 @@
 package com.local.ms_notification.infrastructure.adapter.in.rest.controller.request;
 
 import com.local.ms_notification.domain.enums.NotificationStatusEnum;
+import com.local.ms_notification.domain.enums.NotificationTypeEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,9 +18,9 @@ public class NotificationRequest {
     @NotNull
     private String recipient;
     @NotNull
-    private String message;
+    private String orderId;
     @NotNull
-    private String NotificationTypeEnum;
+    private NotificationTypeEnum type;
     private LocalDateTime sentAt;
     private NotificationStatusEnum status;
 }

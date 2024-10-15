@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Notification {
     private Long id;
     private String recipient;
-    private String message;
+    private String orderId;
     private NotificationTypeEnum type;
     private LocalDateTime sentAt;
     private NotificationStatusEnum status;

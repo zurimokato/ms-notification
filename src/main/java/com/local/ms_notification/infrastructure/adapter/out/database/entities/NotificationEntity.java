@@ -17,7 +17,8 @@ public class NotificationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String recipient;
-    private String message;
+    @Column(name = "order_id")
+    private String orderId;
     @Enumerated(EnumType.STRING)
     private NotificationTypeEnum type;
     @Column(name = "sent_at")
